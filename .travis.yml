@@ -7,7 +7,7 @@ install:
 script:
   - echo script
 after_success:
-  - sshpass -p $DEPLOY_HOST_SSH_PASSWORD ssh $DEPLOY_HOST_SSH_USERNAME@$DEPLOY_HOST "echo 123;"
+  - sshpass -p $DEPLOY_HOST_SSH_PASSWORD ssh $DEPLOY_HOST_SSH_USERNAME@$DEPLOY_HOST "echo 123 >> a.txt;"
 notifications:
   email:
     recipients:
