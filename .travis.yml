@@ -1,0 +1,16 @@
+language: java
+before_install:
+  - env
+  - sudo apt-get install -y sshpass
+install:
+  - echo install
+script:
+  - echo script
+after_success:
+  - sshpass -p $DEPLOY_HOST_SSH_PASSWORD ssh $DEPLOY_HOST_SSH_USERNAME@$DEPLOY_HOST "echo 123;"
+notifications:
+  email:
+    recipients:
+      - 445172495@qq.com
+    on_success: always
+    on_failure: always
