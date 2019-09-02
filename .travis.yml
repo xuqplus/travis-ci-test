@@ -1,18 +1,19 @@
-language: java
+language: node_js
+node_js:
+  - "10"
+env:
+  global:
 addons:
   ssh_known_hosts:
     - 106.12.80.76
 before_install:
   - env
-  - sudo apt-get install -y sshpass
 install:
-  - echo install
+  - echo 123 > aa.txt
 script:
-  - echo script
+  - echo 123 > aa.txt
 after_success:
-  - sshpass -p $DEPLOY_HOST_SSH_PASSWORD ssh $DEPLOY_HOST_SSH_USERNAME@$DEPLOY_HOST "ls; echo 123 >> a.txt;"
-  - ssh
-  - ssh $DEPLOY_HOST_SSH_USERNAME@$DEPLOY_HOST
+  - yarn test:qiniu
 notifications:
   email:
     recipients:
