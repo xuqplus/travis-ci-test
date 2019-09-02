@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "test:qiniu": "node ./qiniu.ts"
+  },
+  "dependencies": {
+    "qiniu": "^7.2.2"
+  }
+}
