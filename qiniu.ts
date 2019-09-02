@@ -8,11 +8,6 @@ const {
 // 七牛oss当作cdn使用了
 const qiniu = require('qiniu')
 
-const mac = new qiniu.auth.digest.Mac(QINIU_ACCESS_KEY, QINIU_SECRET_KEY)
-const options = { scope: QINIU_SCOPE }
-const putPolicy = new qiniu.rs.PutPolicy(options)
-const uploadToken = putPolicy.uploadToken(mac)
-
 const config = new qiniu.conf.Config()
 // 空间对应的机房
 // config.zone = qiniu.zone.Zone_z0 // 华东
@@ -52,9 +47,15 @@ const allFiles = ((dir, callback) => {
   })
 })
 
+const mac = new qiniu.auth.digest.Mac(QINIU_ACCESS_KEY, QINIU_SECRET_KEY)
+
 allFiles('./dist', (filename) => {
   const localFile = filename
   const key = filename.replace(/\\/g, '/').replace(/^dist\//g, '')
+
+  const options = {scope: QINIU_SCOPE + ':' + key}
+  const putPolicy = new qiniu.rs.PutPolicy(options)
+  const uploadToken = putPolicy.uploadToken(mac)
   formUploader.putFile(uploadToken, key, localFile, null, (respErr, respBody, respInfo) => {
     if (respErr) {
       throw respErr
