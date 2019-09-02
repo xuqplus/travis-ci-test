@@ -12,8 +12,8 @@ const config = new qiniu.conf.Config()
 // 空间对应的机房
 // config.zone = qiniu.zone.Zone_z0 // 华东
 // config.zone = qiniu.zone.Zone_z1 // 华北
-config.zone = qiniu.zone.Zone_z2 // 华南
-// config.zone = qiniu.zone.Zone_na0 // 北美
+// config.zone = qiniu.zone.Zone_z2 // 华南
+config.zone = qiniu.zone.Zone_na0 // 北美
 
 const formUploader = new qiniu.form_up.FormUploader(config)
 // const localFile = 'dist/blog/favicon.png'
