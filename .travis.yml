@@ -9,7 +9,7 @@ addons:
 before_install:
   - env
 install:
-  - echo 123 > aa.txt
+  - yarn
 script:
   - echo 123 > aa.txt
 after_success:
